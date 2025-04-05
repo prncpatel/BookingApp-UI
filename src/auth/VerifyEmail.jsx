@@ -43,10 +43,8 @@ export const VerifyEmail = () => {
     }
 
     const handleSubmit = async (values, { setSubmitting }) => {
-        console.log(values)
         try {
             const response = await axios.post("http://localhost:5000/api/users/verify-email", { ...values, email });
-            console.log(response)
             if (response.status === 200) {
                 console.log("Verification successful");
                 toast("Verification Successful!", {

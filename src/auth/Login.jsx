@@ -40,10 +40,8 @@ export const Login = () => {
     }
 
     const handleSubmit = async (values, { setSubmitting }) => {
-        console.log(values)
         try {
             const response = await axios.post("http://localhost:5000/api/users/login", values);
-            console.log(response)
             if (response.status == 200) {
                 dispatch(login(response.data));
                 localStorage.setItem("token", response.data.token);
