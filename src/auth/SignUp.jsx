@@ -61,13 +61,10 @@ export const SignUp = () => {
     }
 
     const handleSubmit = async (values, { setSubmitting }) => {
-        console.log(values)
         try {
             const response = await axios.post("http://localhost:5000/api/users/signup", values);
-            console.log(response)
             if (response.status === 200) {
                 console.log("Sign up successful");
-                console.log(response)
                 toast.success("Sign up successful! Please check your email for verification code.")
                 dispatch(setSignUp(true))
                 navigate("/verifyemail",{

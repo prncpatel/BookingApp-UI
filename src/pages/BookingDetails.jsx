@@ -17,8 +17,6 @@ export const BookingDetails = () => {
 
     const newBookingDetails = useSelector((state) => state.booking.newBookingDetails);
     const allBookingDetails = useSelector((state) => state.booking.allBookingDetails);
-    console.log(allBookingDetails)
-    console.log(newBookingDetails)
 
     useEffect(() => {
         const fetchBookingDetails = async () => {
@@ -30,7 +28,6 @@ export const BookingDetails = () => {
                     },
                 })
                 if (response.status === 200) {
-                    console.log(response.data.bookings)
                     dispatch(getAllBookingDetails(response.data.bookings))
                 }
             } catch (error) {

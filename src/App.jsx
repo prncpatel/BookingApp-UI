@@ -3,7 +3,7 @@ import './App.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Login } from './auth/Login'
 import { SignUp } from './auth/SignUp'
-import { Dashboard } from './pages/Dashboard'
+import { BookingForm } from './pages/BookingForm'
 import { Layout } from './layout/Layout'
 import ProtectedRoute from './protectedRoute'
 import { NotFound } from './pages/NotFound'
@@ -32,7 +32,7 @@ function App() {
         },
         {
           path: "dashboard",
-          element: <ProtectedRoute element={<Dashboard />} />
+          element: <ProtectedRoute element={<BookingForm />} />
         }
       ]
     },
