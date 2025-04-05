@@ -15,6 +15,7 @@ import axios from "axios"
 import { toast } from "sonner";
 import { useDispatch } from "react-redux"
 import { setSignUp } from "@/redux/slices/loginSlice"
+import { signUpFormFields } from "./resources/signUpFormFields"
 
 const initialValues = {
     firstName: "",
@@ -67,10 +68,9 @@ export const SignUp = () => {
                 console.log("Sign up successful");
                 toast.success("Sign up successful! Please check your email for verification code.")
                 dispatch(setSignUp(true))
-                navigate("/verifyemail",{
+                navigate("/verifyemail", {
                     state: { values }
                 });
-
             }
         } catch (error) {
             console.log(`Login Failed! ${error}`)
@@ -95,26 +95,15 @@ export const SignUp = () => {
                                         <CardDescription>Welcome! Sign up using below details.</CardDescription>
                                     </CardHeader>
                                     <CardContent>
-                                        <div className="pb-3">
-                                            <Label htmlFor="firstName" className="pb-1">Your firstname</Label>
-                                            <Field as={Input} name="firstName" placeholder="First Name" type="text" />
-                                            <ErrorMessage name="firstName" component="div" className="text-red-800" />
-                                        </div>
-                                        <div className="pb-3">
-                                            <Label htmlFor="lastName" className="pb-1">Your lastname</Label>
-                                            <Field as={Input} type="text" name="lastName" placeholder="Last Name" />
-                                            <ErrorMessage name="lastName" component="div" className="text-red-800" />
-                                        </div>
-                                        <div className="pb-3">
-                                            <Label htmlFor="email" className="pb-1">Your email address</Label>
-                                            <Field as={Input} type="email" name="email" placeholder="Email" />
-                                            <ErrorMessage name="email" component="div" className="text-red-800" />
-                                        </div>
-                                        <div className="pb-3">
-                                            <Label htmlFor="password" className="pb-1">Your Password</Label>
-                                            <Field as={Input} type="password" name="password" placeholder="Password" />
-                                            <ErrorMessage name="password" component="div" className="text-red-800" />
-                                        </div>
+                                        {
+                                            signUpFormFields.map((field, index) => (
+                                                <div className="pb-3" key={index}>
+                                                    <Label htmlFor={field.name} className="pb-1">{field.label}</Label>
+                                                    <Field as={Input} name={field.name} placeholder={field.placeholder} type={field.type} />
+                                                    <ErrorMessage name={field.name} component="div" className="text-red-800" />
+                                                </div>
+                                            ))
+                                        }
                                     </CardContent>
                                     <CardFooter className="flex justify-between">
                                         <Button variant="outline" onClick={handleLoginNavigation}>Login</Button>
