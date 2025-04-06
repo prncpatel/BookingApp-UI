@@ -63,8 +63,7 @@ export const BookingForm = () => {
         if (values.bookingType === "Half Day") {
             payload.bookingSlot = values.bookingSlot;
         } else if (values.bookingType === "Custom") {
-            payload.fromTime = values.fromTime;
-            payload.toTime = values.toTime;
+            payload.bookingTime =  `${values.fromTime} - ${values.toTime}`;
         }
 
         try {

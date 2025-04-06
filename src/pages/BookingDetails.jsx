@@ -60,7 +60,7 @@ export const BookingDetails = () => {
                             <TableCell>
                                 {booking.bookingType === "Half Day" && booking.bookingSlot}
                                 {booking.bookingType === "Custom" &&
-                                    `${booking.fromTime} - ${booking.toTime}`}
+                                    `${booking.bookingTime}`}
                                 {booking.bookingType === "Full Day" && "Full Day"}
                             </TableCell>
                         </TableRow>
