@@ -13,12 +13,12 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useNavigate } from "react-router-dom"
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../redux/slices/loginSlice";
+import { login, loginError } from "../redux/slices/loginSlice";
 
 
 export const Login = () => {
 
-    const userData = useSelector((state) => console.log(state))
+    const loginErrorData = useSelector((state) =>state.login.loginError);
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -48,6 +48,7 @@ export const Login = () => {
                 navigate("/dashboard")
             }
         } catch (error) {
+            dispatch(loginError("Invalid credentials!"));
             console.log(`Login Failed! ${error}`)
         }
     }
@@ -83,6 +84,7 @@ export const Login = () => {
                                         <Field as={Input} type="password" name="password" placeholder="Password" />
                                         <ErrorMessage name="password" component="div" className="text-red-800" />
                                     </div>
+                                    {loginErrorData && <div className="text-red-800">{loginErrorData}</div>}
                                 </CardContent>
                                 <CardFooter className="flex justify-between">
                                     <Button variant="outline" onClick={handleSignUp}>Sign up</Button>
