@@ -1,0 +1,21 @@
+.react-calendar {
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-family: inherit;
+  }
+  
+  .react-calendar__tile {
+    border-radius: 0.5rem;
+  }
+  
+  .react-calendar__tile--now {
+    background: var(--accent);
+    color: var(--accent-foreground);
+  }
+  
+  .react-calendar__tile--active {
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+  
