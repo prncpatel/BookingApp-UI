@@ -1,5 +1,5 @@
 import { useField, useFormikContext } from 'formik';
-import { format } from "date-fns";
+import dayjs from 'dayjs';
 import { Calendar } from "@/components/ui/calendar";
 import {
   Popover,
@@ -19,15 +19,13 @@ export const FormikDatePicker = ({ name }) => {
       <Popover>
         <PopoverTrigger asChild>
           <Button variant="outline" className="w-full text-left">
-            {selectedDate ? format(selectedDate, "PPP") : "Pick a date"}
+            {selectedDate ? dayjs(selectedDate).format('YYYY-MM-DD') : "Pick a date"}
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-auto p-0">
           <Calendar
-            mode="single"
-            selected={selectedDate}
-            onSelect={(date) => setFieldValue(name, date)}
-            initialFocus
+            value={selectedDate}
+            onChange={(date) => setFieldValue(name, date)}
           />
         </PopoverContent>
       </Popover>
